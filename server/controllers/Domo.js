@@ -12,7 +12,7 @@ const makerPage = async (req, res) => {
     console.log(err);
     return res.status(500).json({ error: 'Error retrieving domos!' });
   }
-  return res.status(500).json({ error: 'Error retrieving domos!' });
+  return res.status(500); // needs a final return
 };
 
 const makeDomo = async (req, res) => {
