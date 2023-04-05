@@ -27,7 +27,7 @@ const sendPost = async (url, data, handler) => {
     }
 };
 const hideError = () => {
-    document.getElementById('domoMessage').classList.ad('hidden');
+    document.getElementById('domoMessage').classList.add('hidden');
 };
 
 module.exports = {
