@@ -49,9 +49,11 @@ nav:nth-child(1) {
 
 .domoForm {
     border: 2px solid #338acc;
-    height: 35px;
-    width: 700px;
+    height: 100px;
+    width: 1000px;
     margin-top:0px;
+    margin-left: auto;
+    margin-right: auto;
     padding-top:10px;
     background-color: #55acee;
     border-bottom-right-radius: 4px;
@@ -256,10 +258,61 @@ h3.domoAge {
     font-size: 1.5em;
 }
 
+/* h3.domoBackstory {
+    float:left;
+    width: 500px;
+    font-weight: bold;
+    padding-left: 65px;
+    font-size: 1.5em;
+} */
+
 .domo:first-child {
     margin-top: 10px;
 }
 
 .domo:last-child {
     margin-bottom:10px;
+}
+
+/* overwright old domo input css: old version is scattered across the doc, easier this way */
+/* style domo field */
+#domoForm {
+    display: grid;
+}
+#domoName {
+    height: 30px;
+    display: block;
+    grid-row: 1;
+    grid-column: 2;
+}
+#domoNameLabel {
+    display: block;
+    grid-row: 1;
+    grid-column: 1;
+}
+#domoAge {
+    height: 30px;
+    display: block;
+    grid-row: 1;
+    grid-column: 4;
+}
+#domoAgeLabel {
+    display: block;
+    grid-row: 1;
+    grid-column: 3;
+}
+#domoBackstory {
+    display: block;
+    grid-row: 1;
+    grid-column: 6;
+}
+#domoBackstoryLabel {
+    display: block;
+    grid-row: 1;
+    grid-column: 5;
+}
+#submitButton{
+    display: block;
+    grid-row: 1;
+    grid-column: 7;
 }

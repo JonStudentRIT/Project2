@@ -2,23 +2,40 @@ const helper = require('./helper.js');
 const React = require('react');
 const ReactDOM = require('react-dom');
 
+let id;
+
 const handleDomo = (e) => {
     e.preventDefault();
     helper.hideError();
 
     const name = e.target.querySelector('#domoName').value;
     const age = e.target.querySelector('#domoAge').value;
+    const backstory = e.target.querySelector('#domoBackstory').value;
 
-    if(!name || !age)
+    if(!name || !age || !backstory)
     {
         helper.handleError('All fields are required');
         return false;
     }
 
-    helper.sendPost(e.target.action, {name, age}, loadDomosFromServer);
+    helper.sendPost(e.target.action, {name, age, backstory}, loadDomosFromServer);
 
     return false;
 };
+
+// delete function 
+const deleteDomo = (e) => {
+    e.preventDefault();
+    helper.hideError();
+
+    // empty string check
+    if(id) {
+        // go to the helper to send an update 
+        helper.sendDelete(e.target.action, {id}, loadDomosFromServer);
+    }
+
+    return false;
+  };
 
 const DomoForm = (props) => {
     return (
@@ -29,11 +46,19 @@ const DomoForm = (props) => {
             method = "POST"
             className = "domoForm"
             >
-                <lable htmlFor = "name">Name: </lable>
+                <lable id = "domoNameLabel" htmlFor = "name">Name: </lable>
                 <input id = "domoName" type="text" name = "name" placeholder = "Domo Name" />
-                <label htmlFor = "age">Age: </label>
+                <br />
+                <label id ='domoAgeLabel' htmlFor = "age">Age: </label>
                 <input id = "domoAge" type="number" min = "0" name = "age" />
-                <input className = "makeDomoSubmit" type="submit" value = "Make Domo" />
+                <br />
+                {/*adds larger field for more explanation about the domo pt1 */}
+                <lable id = "domoBackstoryLabel" htmlFor = "backstory">Backstory: </lable>
+                <textarea id = "domoBackstory" rows="6" cols="30"  name = "backstory" >
+                    Tell the story of your Domo
+                </textarea>
+                <br />
+                <input id = "submitButton" className = "makeDomoSubmit" type="submit" value = "Make Domo" />
             </form>
     );
 };
@@ -49,9 +74,27 @@ const DomoList = (props) => {
     const domoNodes = props.domos.map(domo => {
         return (
             <div key = {domo._id} className = "domo">
-                <img src = "/assets/img/domoface.jpeg" alt = "domo face" className = "domoFace" />
-                <h3 className = "domoName">Name: {domo.name} </h3>
-                <h3 className = "domoAge">Age: {domo.age} </h3>
+                <div>
+                    <img src = "/assets/img/domoface.jpeg" alt = "domo face" className = "domoFace" />
+                    <h3 className = "domoName">Name: {domo.name} </h3>
+                    <h3 className = "domoAge">Age: {domo.age} </h3>
+                </div>
+                {/* description of the domo is seperate from the name and age */}
+                <div>
+                    <h3 className = "domoBackstory">Backstory: {domo.backstory}</h3>
+                </div>
+                <div>
+                {/* add a button to delete a domo */}
+                <form
+                    // call the delete function
+                    onSubmit = {deleteDomo}
+                    action = "/delete"
+                    >
+                        {/* _id and the index of the domo thats diplayed need to match */}
+                        {/* this is where the domo _id is collected for the comparison in deleteOne() from controllers */}
+                        <input id = "submitButton" onClick = {()=>{id=domo._id}} type="submit" value = "Delete" />
+                    </form>
+                </div>
             </div>
         );
     });
