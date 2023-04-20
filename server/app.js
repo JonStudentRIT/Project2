@@ -15,7 +15,7 @@ const router = require('./router.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
-const dbURI = process.env.MONGODB_URI || 'mongodb+srv://jk9927:S4mVxyzHm9LqpJdU@cluster0.mcyfvky.mongodb.net/DomoA?retryWrites=true&w=majority';// 'mongodb://127.0.0.1/DomoMaker';
+const dbURI = process.env.MONGODB_URI || 'mongodb+srv://jk9927:S4mVxyzHm9LqpJdU@cluster0.mcyfvky.mongodb.net/Project2?retryWrites=true&w=majority';// 'mongodb://127.0.0.1/DomoMaker';
 mongoose.connect(dbURI).catch((err) => {
   if (err) {
     console.log('Could not connect to database');
@@ -43,7 +43,7 @@ redisClient.connect().then(() => {
     store: new RedisStore({
       client: redisClient,
     }),
-    secret: 'Domo Arigato', // mr roboto
+    secret: 'PlaceHolder',
     resave: false,
     saveUninitialized: false,
   }));
