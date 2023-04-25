@@ -7,5 +7,6 @@ const router = (app) => {
   app.post('/signup', mid.requiresSecure, mid.requiresLogin, controllers.Account.signup);
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
+  app.get('/getCompanies', )
 };
 module.exports = router;

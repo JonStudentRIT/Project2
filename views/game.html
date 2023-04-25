@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2</title>
+</head>
+<body>
+    <div>
+        <!-- Navigation to other pages -->
+        <button style="display: block;" onclick="setoutput('you are going to the market page to view the changes'), assignVisability(1)">Market</button>
+        <button style="display: block;" onclick="setoutput('you are going to the main application'), assignVisability(2)">Options</button>
+        <button style="display: block;" onclick="setoutput('you are in the positive interaction page'), assignVisability(3)">Positive Selection</button>
+        <button style="display: block;" onclick="setoutput('you are in the negative interaction page'), assignVisability(4)">Negative Section</button>
+    </div>
+    <div>
+        <!-- this is the information section -->
+        <p id="information">
+
+        </p>
+    </div>
+    <div>
+        <!-- left positive -->
+        <button style="display: block;" onclick="setoutput('you are funding a new company')">Fund a Company</button>
+        <button style="display: block;" onclick="setoutput('you are going to the stock page to buy')">Buy</button>
+        <button style="display: block;" onclick="setoutput('you are going the the stock page to sell')">Sell</button>
+    </div>
+    <div>
+        <!-- right negative -->
+        <button style="display: block;" onclick="setoutput('you are protected from a sellout until some arbitraty time later')">Backroom Trading</button>
+        <button style="display: block;" onclick="setoutput('you have reduced the value of a companys stock for an arbitrary period of time')">Disinformation</button>
+        <button style="display: block;" onclick="setoutput('you have caused permanant damage to a companys value')">Vandalism</button>
+    </div>
+    <script>
+        let value = 10000;
+        let owned = [];
+        owned.push({
+            name: "Buisness 1",
+            held: 80,
+        },);
+        owned.push({
+            name: "Buisness 2",
+            held: 30,
+        },);
+        owned.push({
+            name: "Buisness 3",
+            held: 192,
+        },);
+        let scribe = "";
+        let seed = [];
+        let buttons = [];
+        seed.push({
+            name: "Buisness 1",
+            percent: 100,
+            value: 8000,
+            total: 120,
+            available: 20,
+        },);
+        seed.push({
+            name: "Buisness 2",
+            percent: 100,
+            value: 1000,
+            total: 100,
+            available: 70,
+        },);
+        seed.push({
+            name: "Buisness 3",
+            percent: 100,
+            value: 1000,
+            total: 200,
+            available: 8,
+        },);
+        // find element.name in seed
+        // main equation for game codition
+        // value = {repeate for all owned.element * owned.element.percent} + (element.value * (owned.element.held/element.total)
+        function setoutput(text)
+        {
+            scribe = scribe + text + '<br>';
+            document.querySelector("#information").innerHTML = scribe;
+        };
+        function assignVisability(val)
+        {
+            for(let i = 4; i < buttons.length; i++)
+            {
+                buttons[i].style.display = "none";
+            }
+            if(val===1)
+            {
+                // all the buttons are not visable in the market page
+            }
+            if(val===2)
+            {
+                // still not visable this will list inormation about the player the account and the conditions of the buisnesses owned by the player
+            }
+            if(val===3)
+            {
+                buttons[4].style.display = "block";
+                buttons[5].style.display = "block";
+                buttons[6].style.display = "block";
+            }
+            if(val===4)
+            {
+                buttons[7].style.display = "block";
+                buttons[8].style.display = "block";
+                buttons[9].style.display = "block";
+            }
+        }
+        function init()
+        {
+            buttons = document.querySelectorAll("button");
+            console.log(buttons);
+        }
+        init();
+    </script>
+</body>
+</html>
