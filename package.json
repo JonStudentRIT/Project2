@@ -1,5 +1,5 @@
 {
-  "name": "domomaker",
+  "name": "Project2",
   "version": "1.0.0",
   "description": "A Simple Login Example using Node.js, Mongo and Redis",
   "main": "./server/app.js",
@@ -18,7 +18,7 @@
     "Redis",
     "Login"
   ],
-  "author": "Cody Van De Mark / Austin Willoughby",
+  "author": "Cody Van De Mark / Austin Willoughby / Jonathan Karcher",
   "license": "Apache 2.0",
   "devDependencies": {
     "eslint": "^8.36.0",
