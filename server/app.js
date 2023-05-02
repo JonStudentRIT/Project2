@@ -33,7 +33,7 @@ redisClient.on('error', (err) => console.log('Redis Client Error', err));
 const app = express();
 
 redisClient.connect().then(() => {
-  //const app = express();
+  // const app = express();
 
   app.use(helmet());
   app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted/`)));
