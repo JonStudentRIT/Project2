@@ -13,6 +13,8 @@ const redis = require('redis');
 
 const router = require('./router.js');
 
+const socketSetup = require('./io.js');
+
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 const dbURI = process.env.MONGODB_URI || 'mongodb+srv://jk9927:S4mVxyzHm9LqpJdU@cluster0.mcyfvky.mongodb.net/DomoA?retryWrites=true&w=majority';// 'mongodb://127.0.0.1/DomoMaker';
@@ -28,8 +30,10 @@ const redisClient = redis.createClient({
 
 redisClient.on('error', (err) => console.log('Redis Client Error', err));
 
+const app = express();
+
 redisClient.connect().then(() => {
-  const app = express();
+  //const app = express();
 
   app.use(helmet());
   app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted/`)));
@@ -54,8 +58,17 @@ redisClient.connect().then(() => {
 
   router(app);
 
-  app.listen(port, (err) => {
-    if (err) { throw err; }
-    console.log(`Listening on port ${port}`);
-  });
+  // app.listen(port, (err) => {
+  //   if (err) { throw err; }
+  //   console.log(`Listening on port ${port}`);
+  // });
+});
+const server = socketSetup(app);
+
+// Then we start the server
+server.listen(port, (err) => {
+  if (err) {
+    throw err;
+  }
+  console.log(`Listening on port ${port}`);
 });

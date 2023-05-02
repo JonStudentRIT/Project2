@@ -22,6 +22,18 @@
     <h3><span id="errorMessage"></span></h3>
     <img id="domo" src="assets/img/domo.png" alt="domo"/>
   </div>
+  
+  <form id="editForm">
+    <input id="editBox" type="text" />    
+    <select name="channel" id="channelSelect">
+      <option value="general">General</option>
+      <option value="memes">Memes</option>
+    </select>
+    <input type="submit" />
+  </form>
+
+  <div id="messages"></div>
+   <script src="/socket.io/socket.io.js"></script>
   <script src="/assets/appBundle.js"></script>
 </body>
 </html>
